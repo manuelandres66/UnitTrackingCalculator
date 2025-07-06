@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <title>Unit Tracking Calculator</title>
+    <link rel="stylesheet" href="{% static 'calc/index.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div id="container">
+        <div id="calculator">
+            <div class="selectedUnit">
+                <p id="MKS" class="systemIndicator" data-value="MKS">MKS</p> 
+                <p id="CGS" class="systemIndicator" data-value="CGS">CGS</p> 
+                <p id="IMP" class="systemIndicator" data-value="IMP">IMP</p>
+            </div>
+            <div><input type="text" id="carry" class="inputs" disabled/></div>
+            <div><input type="text" id="now" class="inputs" disabled/></div>
+            <div class="row">
+                <button class="button convert" data-value="MKS">to_SI()</button>
+                <button class="button convert" data-value="cos">to_CGS()</button>
+                <button class="button convert" data-value="tan">to_IMP()</button>
+            </div>
+            <div class="row">
+                <button class="button functions" data-value="sin">sin()</button>
+                <button class="button functions" data-value="cos">cos()</button>
+                <button class="button functions" data-value="tan">tan()</button>
+            </div>
+            <div class="row">
+                <button class="button number" data-value="7">7</button>
+                <button class="button number" data-value="8">8</button>
+                <button class="button number" data-value="9">9</button>
+                <button class="button operant" data-value="/">÷</button>
+            </div>
+            <div class="row">
+                <button class="button number" data-value="4">4</button>
+                <button class="button number" data-value="5">5</button>
+                <button class="button number" data-value="6">6</button>
+                <button class="button operant" data-value="x">x</button>
+            </div>
+            <div class="row">
+                <button class="button number" data-value="1">1</button>
+                <button class="button number" data-value="2">2</button>
+                <button class="button number" data-value="3">3</button>
+                <button class="button operant" data-value="-">-</button>
+            </div>
+            <div class="row">
+                <button class="button number" data-value="0">0</button>
+                <button class="button number" data-value=".">.</button>
+                <button class="button" id="equal">=</button>
+                <button class="button operant" data-value="+">+</button>
+            </div>
+            <div class="row">
+                <button class="button" id="ac">AC</button>
+                <button class="button" id="ans">Ans</button>
+            </div>
+        </div>
+
+
+        <table id="unitsCont">
+            <thead>
+                <tr>
+                    <th>-</th>
+                    <th><button class="unitChanger" data-value="MKS">MKS</button></th>
+                    <th><button class="unitChanger" data-value="CGS">CGS</button></th>
+                    <th><button class="unitChanger" data-value="IMP">IMP</button></th>
+                </tr>
+            </thead>
+            <tbody>
+                    <th>Len.</th>
+                    <td><button class="unit len" data-value="m" data-type="len">m</button></td>
+                    <td><button class="unit len" data-value="cm" data-type="len">cm</button></td>
+                    <td><button class="unit len" data-value="ft" data-type="len">ft</button></td>
+                </tr>
+                <tr>
+                    <th>Mass</th>
+                    <td><button class="unit mass" data-value="kg" data-type="mass">kg</button></td>
+                    <td><button class="unit mass" data-value="g" data-type="mass">g</button></td>
+                    <td><button class="unit mass" data-value="slug" data-type="mass">slug</button></td>
+                </tr>
+                <tr>
+                    <th>Vel.</th>
+                    <td><button class="unit vel" data-value="m/s" data-type="vel">m/s</button></td>
+                    <td><button class="unit vel" data-value="cm/s" data-type="vel">cm/s</button></td>
+                    <td><button class="unit vel" data-value="ft/s" data-type="vel">ft/s</button></td>
+                </tr>
+                <tr>
+                    <th>Acc.</th>
+                    <td><button class="unit acc" data-value="m/s^2" data-type="acc">m/s²</button></td>
+                    <td><button class="unit acc" data-value="cm/s^2" data-type="acc">cm/s²</button></td>
+                    <td><button class="unit acc" data-value="ft/s^2" data-type="acc">ft/s²</button></td>
+                </tr>
+                <tr>
+                    <th>Force</th>
+                    <td><button class="unit forc" data-value="N" data-type="forc">N</button></td>
+                    <td><button class="unit forc" data-value="dyne" data-type="forc">dyn</button></td>
+                    <td><button class="unit forc" data-value="lbf" data-type="forc">lbf</button></td>
+                </tr>
+                <tr>
+                    <th>Ener.</th>
+                    <td><button class="unit ener" data-value="J" data-type="ener">J</button></td>
+                    <td><button class="unit ener" data-value="erg" data-type="ener">erg</button></td>
+                    <td><button class="unit ener" data-value="ft*lbf" data-type="ener">ft-lb</button></td>
+                </tr>
+                <tr>
+                    <th>Press.</th>
+                    <td><button class="unit press" data-value="Pa" data-type="press">Pa</button></td>
+                    <td><button class="unit press" data-value="Ba" data-type="press">Ba</button></td>
+                    <td><button class="unit press" data-value="psi" data-type="press">psi</button></td>
+                </tr>
+                <tr>
+                    <th>Power</th>
+                    <td><button class="unit pow" data-value="W" data-type="pow">W</button></td>
+                    <td><button class="unit pow" data-value="erg/s" data-type="pow">erg/s</button></td>
+                    <td><button class="unit pow" data-value="hp" data-type="pow">hp</button></td>
+                </tr>
+                <tr>
+                    <th>Others</th>
+                    <td><button class="unit less" data-value="" data-type="less">Unitless</button></td>
+                    <td><button class="unit second" data-value="s" data-type="type">Second</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'calc/index.js' %}""></script>
+</body>
+</html>
