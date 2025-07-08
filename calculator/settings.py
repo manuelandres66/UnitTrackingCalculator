@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['unittrackingcalculator.onrender.com', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://unittrackingcalculator.onrender.com"
+]
+
 
 # Application definition
 
