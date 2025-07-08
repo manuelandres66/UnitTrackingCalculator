@@ -29,8 +29,7 @@ SI_UNITS = [
     ur.meter, ur.second, ur.kilogram, ur.newton,
     ur.pascal, ur.joule, ur.watt, ur.hertz, 
     ur.meter/ur.second, ur.meter/ur.second**2,
-    ur.joule*ur.meter, ur.watt*ur.meter
-
+    ur.joule*ur.meter, ur.watt*ur.meter, ur.joule/ur.second
 ]
 
 CGS_UNITS = [
