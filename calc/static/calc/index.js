@@ -1,6 +1,6 @@
 const getCSRFToken = () => {
   return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-};
+}; 
 
 const now = document.getElementById("now");
 const carry = document.getElementById("carry");
